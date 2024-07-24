@@ -1,4 +1,4 @@
-package classes;
+package crud.demo.classes;
 
 import com.google.gson.Gson;
 
