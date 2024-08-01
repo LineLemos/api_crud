@@ -1,13 +1,53 @@
 package crud.demo.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.Gson;
 
 import crud.demo.classes.Endereco;
+import crud.demo.repository.EnderecoRepository;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class EnderecoService {
+
+     @Autowired
+    private EnderecoRepository enderecoRepository;
+
+    public List<Endereco> getAll(){
+        return enderecoRepository.findAll();
+    }
+
+    public Endereco getById(Long id){
+        return enderecoRepository.findById(id).orElse(null);
+    }
+
+    public Endereco create(Endereco endereco) {
+        return enderecoRepository.save(endereco);
+    }
+
+
+    public Endereco update(Long id, Conta conta){
+        Endereco enderecoExistente = getById(id);
+
+        if(enderecoExistente == null){
+            return null;
+        }
+
+        enderecoExistente.setCep(endereco.getCep());
+        
+       
+        return enderecoRepository.save(enderecoExistente);
+
+    }
+
+    public void delete(Long id){
+        enderecoRepository.deleteById(id);
+    }
+
 public Endereco getEnderecoByCep(String cep) {
         
         Endereco endereco = new Endereco();

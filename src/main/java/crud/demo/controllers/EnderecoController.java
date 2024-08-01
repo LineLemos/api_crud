@@ -21,7 +21,7 @@ public class EnderecoController {
         return ResponseEntity.ok(enderecos);
     }
     
-    // Buscar um cliente por id - getById
+   
     @GetMapping("/{id}")
     public ResponseEntity<Endereco> getById(@PathVariable Long id) {
         Endereco endereco = enderecoService.getById(id);
@@ -33,15 +33,14 @@ public class EnderecoController {
         return ResponseEntity.ok(endereco);
     }
 
-    // Criar um cliente - create
+  
     @PostMapping
     public ResponseEntity<Endereco> create(@RequestBody Endereco endereco) {
         Endereco enderecoSalvo = enderecoService.create(endereco);
         return ResponseEntity.ok(enderecoSalvo);
     }
 
-    // Atualizar um cliente - update
-    // Combinação do getById e create
+    
     @PutMapping("/{id}")
     public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
         Endereco enderecoExistente = enderecoService.getById(id);
@@ -57,7 +56,7 @@ public class EnderecoController {
         return ResponseEntity.ok(enderecoSalvo);
     }
 
-    // Deletar um cliente - delete
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         Endereco endereco = enderecoService.getById(id);

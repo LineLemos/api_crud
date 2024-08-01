@@ -1,6 +1,5 @@
 package crud.demo.classes;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
@@ -13,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "clientes")
 public class Cliente {
-    public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+   
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
