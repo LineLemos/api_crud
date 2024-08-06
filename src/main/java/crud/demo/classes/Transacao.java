@@ -17,24 +17,19 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String tipo;
-
-    private LocalDateTime data = LocalDateTime.now();
+    @Column(nullable = false)
+    @Enumerated
+    private TipoTransacao tipoTransacao;
 
     @Column(nullable = false)
     private double valor;
 
     @ManyToOne
-    @JoinColumn(name = "conta_origem_id", referencedColumnName = "id")
-    private Conta origem;
- 
+    @JoinColumn(name = "conta_origem", referencedColumnName = "id")
+    private Conta contaOrigem;
+
     @ManyToOne
-    @JoinColumn(name = "conta_destino_id", referencedColumnName = "id")
-    private Conta destino;
+    @JoinColumn(name = "conta_destino", referencedColumnName = "id")
+    private Conta contaDestino;
 
-
-
-    // origem, destino, valor, tipo de operação: pix, transferência, etc.
-    // saque/depósito
 }

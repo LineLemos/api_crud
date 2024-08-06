@@ -11,7 +11,7 @@ import crud.demo.service.ContaService;
 
 
 @RestController
-@RequestMapping("conta")
+@RequestMapping("contas")
 public class ContaController {
 
     @Autowired
@@ -45,20 +45,14 @@ public class ContaController {
 
     
     @PutMapping("/{id}")
-    public ResponseEntity<Conta> update(@PathVariable Long id, @RequestBody Conta conta){
-        Conta contaExistente = contaService.getById(id);
-
-        if (contaExistente == null){
-            return ResponseEntity.notFound().build();
-
+    public ResponseEntity<Conta> atualizarConta(@PathVariable Long id, @RequestBody Conta contaAtualizada){
+       Conta conta = contaService.getById(id);
+       if (conta == null) {
+        return null;
         }
+        conta.setSaldo(contaAtualizada.getSaldo());
+        return ResponseEntity.ok(conta);
 
-        contaExistente.setNumeroConta(conta.getNumeroConta());
-        contaExistente.setSaldo(conta.getSaldo());
-
-        Conta contaSalva = contaService.create(contaExistente);
-
-        return ResponseEntity.ok(contaSalva);
     }
 
     @DeleteMapping("/{id}")

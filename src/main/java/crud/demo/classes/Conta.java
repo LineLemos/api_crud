@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "Conta Corrente")
+@Table(name = "conta")
 public class Conta {
     
 
@@ -20,10 +20,17 @@ public class Conta {
     private String numeroConta;
 
     @Column(nullable = false)
-    private Double Saldo;
+    private double saldo = 0.0;
 
     @OneToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
 
+    
+    public boolean temSaldo(double valor){
+        if(this.getSaldo() >= valor) {
+            return true;
+        } 
+        return false;
+    }
 }

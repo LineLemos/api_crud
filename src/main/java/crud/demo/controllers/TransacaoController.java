@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import crud.demo.classes.Transacao;
 import crud.demo.service.TransacaoService;
 
-@RestController.
+@RestController
 @RequestMapping("transacoes")
 public class TransacaoController {
 
@@ -24,20 +24,16 @@ public class TransacaoController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Transacao> getById(@PathVariable Long id) {
-        Transacao transacao = transacaoService.getById(id);
-
-        if (transacao == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(transacao);
+    public ResponseEntity<Transacao> getByid(@PathVariable Long id){
+        return ResponseEntity.ok(transacaoService.getById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Transacao> create(@RequestBody Transacao transacao) {
-        Transacao transacaoSalvo = transacaoService.create(transacao);
-        return ResponseEntity.ok(transacaoSalvo);
+    public ResponseEntity<?> create(@RequestBody Transacao transacao){
+        if( transacao.getContaOrigem().temSaldo(transacao.getValor()) ) {
+            return ResponseEntity.ok(transacaoService.create(transacao));
+        }
+        return ResponseEntity.badRequest().body("Saldo insuficiente");
     }
 
 }

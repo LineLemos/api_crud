@@ -23,16 +23,9 @@ public class EnderecoController {
     
    
     @GetMapping("/{id}")
-    public ResponseEntity<Endereco> getById(@PathVariable Long id) {
-        Endereco endereco = enderecoService.getById(id);
-
-        if (endereco == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(endereco);
+    public ResponseEntity<Endereco> getByid(@PathVariable Long id){
+       return ResponseEntity.ok(enderecoService.getById(id));
     }
-
   
     @PostMapping
     public ResponseEntity<Endereco> create(@RequestBody Endereco endereco) {
@@ -42,34 +35,17 @@ public class EnderecoController {
 
     
     @PutMapping("/{id}")
-    public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
-        Endereco enderecoExistente = enderecoService.getById(id);
-
-        if (enderecoExistente == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        enderecoExistente.setCep(endereco.getCep());
-       
-        Endereco enderecoSalvo = enderecoService.create(enderecoExistente);
-
-        return ResponseEntity.ok(enderecoSalvo);
+    public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco){
+       return ResponseEntity.ok(enderecoService.update(endereco, id));
     }
 
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        Endereco endereco = enderecoService.getById(id);
-
-        if (endereco == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        enderecoService.delete(id);
-
-        return ResponseEntity.noContent().build();
-    }
-    
+ public ResponseEntity<Void> delete(@PathVariable Long id){
+enderecoService.delete(id);
+ 
+return ResponseEntity.noContent().build();
+ }
 }
 
 

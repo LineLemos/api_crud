@@ -30,22 +30,15 @@ public class EnderecoService {
     }
 
 
-    public Endereco update(Long id, Conta conta){
-        Endereco enderecoExistente = getById(id);
-
-        if(enderecoExistente == null){
-            return null;
-        }
-
-        enderecoExistente.setCep(endereco.getCep());
-        
-       
-        return enderecoRepository.save(enderecoExistente);
-
+    public Endereco update(Endereco endereco, Long id){
+        endereco.setId(id);
+        return enderecoRepository.save(endereco);
     }
 
-    public void delete(Long id){
-        enderecoRepository.deleteById(id);
+    public Endereco delete(Long id){
+        Endereco endereco = getById(id);
+        enderecoRepository.delete(endereco);
+        return endereco;
     }
 
 public Endereco getEnderecoByCep(String cep) {

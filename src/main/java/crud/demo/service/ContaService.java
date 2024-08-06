@@ -27,19 +27,14 @@ public class ContaService {
     }
 
 
-    public Conta update(Long id, Conta conta){
-        Conta contaExistente = getById(id);
-
-        if(contaExistente == null){
-            return null;
-        }
-
-        contaExistente.setNumeroConta(conta.getNumeroConta());
-        contaExistente.setSaldo(conta.getSaldo());
-       
-        return contaRepository.save(contaExistente);
-
-    }
+    public Conta atualizarConta(Conta conta, Long id){
+        Conta contaAtualizar = getById(id);
+         if (contaAtualizar == null) {
+             return null;
+             }
+             contaAtualizar.setSaldo(conta.getSaldo());
+            return contaRepository.save(contaAtualizar);
+     }
 
     public void delete(Long id){
         contaRepository.deleteById(id);
