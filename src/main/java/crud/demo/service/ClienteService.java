@@ -38,7 +38,7 @@ public class ClienteService {
             clienteSalvo.setTelefone(clienteNovo.getTelefone());
         }
         if (clienteNovo.getDataNascimento() != null) {
-            clienteSalvo.setDatanascimento(clienteNovo.getDatanascimento());
+            clienteSalvo.setDataNascimento(clienteNovo.getDataNascimento());
         }
         if (clienteNovo.getEndereco() != null) {
             clienteSalvo.setEndereco(clienteNovo.getEndereco());
