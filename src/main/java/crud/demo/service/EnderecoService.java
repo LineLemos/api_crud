@@ -3,12 +3,14 @@ package crud.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
 import crud.demo.classes.Endereco;
 import crud.demo.repository.EnderecoRepository;
 
+@Service
 public class EnderecoService {
 
     @Autowired
